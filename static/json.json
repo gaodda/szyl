@@ -1,0 +1,73 @@
+[
+        {
+        "filename": "ausbName",
+        "size": "",
+        "path": "/opt/NfsDir/PublicDir/demo/ausbName",
+        "type": "0",
+        "status": "0",
+        "children": [
+            {
+                "filename": "userFolder",
+                "size": "",
+                "path": "/opt/NfsDir/PublicDir/demo/ausbName/userFolder",
+                "type": "0",
+                "status": "0",
+                "children": [
+                    {
+                        "filename": "Sample_LU01",
+                        "size": "",
+                        "path": "/opt/NfsDir/PublicDir/demo/ausbName/userFolder/Sample_LU01",
+                        "type": "0",
+                        "status": "0",
+                        "children": [
+                            {
+                                "filename": "Sample_LU01_R1.fastq.gz",
+                                "size": "1.1G",
+                                "path": "/opt/NfsDir/PublicDir/demo/ausbName/userFolder/Sample_LU01/Sample_LU01_R1.fastq.gz",
+                                "type": "fastq",
+                                "status": "1"
+                            },
+                            {
+                                "filename": "Sample_LU01_R2.fastq.gz",
+                                "size": "1.3G",
+                                "path": "/opt/NfsDir/PublicDir/demo/ausbName/userFolder/Sample_LU01/Sample_LU01_R2.fastq.gz",
+                                "type": "fastq",
+                                "status": "1",
+                            }
+                        ]
+                    },
+                    {
+                        "filename": "Sample_LU02",
+                        "size": "",
+                        "path": "/opt/NfsDir/PublicDir/demo/ausbName/userFolder/Sample_LU02",
+                        "type": "0",
+                        "status": "0",
+                        "children": [
+                            {
+                                "filename": "Sample_LU02.vcf.gz",
+                                "size": "2.7M",
+                                "path": "/opt/NfsDir/PublicDir/demo/ausbName/userFolder/Sample_LU02/Sample_LU02.vcf.gz",
+                                "type": "vcf",
+                                "status": "1",
+                            }
+                        ]
+                    },
+                    {
+                        "filename": "Sample_LU03",
+                        "size": "",
+                        "path": "/opt/NfsDir/PublicDir/demo/ausbName/userFolder/Sample_LU03",
+                        "type": "0",
+                        "status": "0",
+                    },
+                    {
+                        "filename": "example1.xlsx",
+                        "size": "",
+                        "path": "/opt/NfsDir/PublicDir/demo/ausbName/userFolder/example1.xlsx",
+                        "type": "xlsx",
+                        "status": "1",
+                    }
+                ]
+            }
+        ]
+    }
+]
