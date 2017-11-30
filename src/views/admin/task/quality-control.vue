@@ -64,12 +64,13 @@
                                         <img :src="imgUrl+item.fileName" height="300" width="715" title="点击查看大图"> 
                                     </div>
                                     <!-- 左侧弹层 -->
-                                    <Modal v-model="picShowLeft" width="1200" :mask-closable="false">
-                                        <div class="pic-show" v-model="picLeftModal">
-                                            <img :src="imgUrl+picLeftModal.fileName" width="1200">
-                                        </div>
-                                    </Modal>
                                 </div>
+                                <Modal v-model="picShowLeft" width="1200" :mask-closable="false">
+                                    <div class="pic-show" v-model="picLeftModal">
+                                        <img :src="src" width="1200">
+                                        <!--<img src="./img/clean.jpg" width="1200px;"/> -->
+                                    </div>
+                                </Modal>
                             </Col>
                         </Row> 
                     </div>
@@ -86,18 +87,20 @@
                                         </div> -->
                                         <img :src="imgUrl+item.fileName" height="300" width="300" title="点击查看大图">
                                     </div>
-                                    <Modal v-model="picShowRight" width="500" :mask-closable="false">
-                                        <div class="pic-show" v-model="picRightModal">
-                                            <img :src="imgUrl+picRightModal.fileName" width="500">
-                                        </div>
-                                    </Modal> 
+                                    
                                 </div>
+                                <Modal v-model="picShowRight" width="500" :mask-closable="false">
+                                    <div class="pic-show" v-model="picRightModal">
+                                        <img :src="src" width="500">
+                                    </div>
+                                </Modal>
                             </Col>
                         </Row>
                     </div>
                 </Col>
             </Row>
         </div>
+         
         <div class="quality-tab" v-if="show">
             <div class="tab-cont">
                 <h5>{{tableTitle}}</h5>
@@ -133,6 +136,7 @@ export default {
             picLeftModal:{},
             picRightModal:{},
             show:true,
+            src:""
         }
     },
     // 实例创建时
@@ -187,10 +191,12 @@ export default {
             this.picLeftModal = this.picLeftList[index];
             // console.log(this.picLeftModal);
             this.picShowLeft = true;
+            this.src=this.imgUrl+this.picLeftModal.fileName;
         },
         mouseCoverRight(index) {
             this.picRightModal = this.picRightList[index];
             this.picShowRight = true;
+            this.src=this.imgUrl+this.picRightModal.fileName
         }
     }
 }

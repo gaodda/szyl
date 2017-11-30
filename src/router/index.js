@@ -1,6 +1,7 @@
 import Vue from 'vue';
 // 引入vue-router
 import VueRouter from 'vue-router';
+// import Admin from '@/views/admin/index/index.vue'
 
 // import system from './system/system.js';
 // 注册路由组件
@@ -43,7 +44,8 @@ const router=new VueRouter({
         },
         {
             path: '/admin',
-            name:"后台主页",
+            name: "后台主页",
+            // component:Admin,
             component: resolve => require(['@/views/admin/index/index.vue'], resolve),
             children: [{
                 path: '/admin/tumour',

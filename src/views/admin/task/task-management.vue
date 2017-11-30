@@ -89,10 +89,11 @@
                         </span>
                     </template>           
                 </el-table-column>
-                <el-table-column prop="path" label="vcf文件下载" min-width="10%" >
+                <el-table-column prop="path" label="vcf文件下载" min-width="10%" v-if="productId==1">
                     <template slot-scope="scope">
-                        <a :href="'http://42.123.124.204:8081/dchealth-platform/1.0/data/ftpupdate?jobid='+scope.row.jobid" download  v-if="scope.row.type=='Y'">下载</a>
-                        <!--<a :href="'http://10.131.101.159:8080/dchealth-platform/1.0/data/ftpupdate?jobid='+scope.row.jobid" download  v-if="scope.row.type=='Y'">下载</a>-->
+                        <el-button size="small" >下载</el-button>
+                        <!--<a :href="'http://42.123.124.204:8081/dchealth-platform/1.0/data/ftpupdate?jobid='+scope.row.jobid" download  v-if="scope.row.type=='Y'">下载</a>
+                        <a :href="'http://10.131.101.159:8080/dchealth-platform/1.0/data/ftpupdate?jobid='+scope.row.jobid" download  v-if="scope.row.type=='Y'">下载</a>-->
                     </template>
                 </el-table-column>
                 <el-table-column label="操作" min-width='15%'>

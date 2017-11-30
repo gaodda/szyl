@@ -7,6 +7,7 @@
         padding:10px 10px 30px;
         background:#fff;
     }
+    
 </script>
 <template>
     <div>
@@ -88,6 +89,15 @@
                                     <div v-for="(list,index) in scope.row.dchSampleList" class="handle" style="height:40px;">
                                         <router-link :to="{path:'/admin/tumour/cgdap?samid='+list.sampleid}">C GDAP</router-link>
                                     </div>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="报告下载">
+                                <template slot-scope="scope">
+                                    <!--<div v-for="(list,index) in scope.row.dchJob" class="handle" style="height:40px;">-->
+                                        <a class="download" :href="'http://42.123.124.204:8081/dchealth-platform/1.0/data/ftpupdate?jobid='" download >下载</a>
+                                        <!--<a class="dis-download" href="javascript:return false" download  disabled>下载</a>-->
+                                        <!--<a :href="'http://10.131.101.159:8080/dchealth-platform/1.0/data/ftpupdate?jobid='+list.jobid" download  v-if="scope.row.type=='Y'">下载</a>-->
+                                    <!--</div>-->
                                 </template>
                             </el-table-column>
                             <tr slot="append" style="height:50px;" v-if="more">

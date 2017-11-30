@@ -101,7 +101,7 @@
         <!-- 图片弹层 -->
         <Modal v-model="picCLeanShowModal" width="600" :mask-closable="false">
             <div class="pic-show" v-model="picModal">
-                <img :src="imgUrl+picModal.fileName" width="600">
+                <img :src="src" width="600">
             </div>
         </Modal> 
     </div>
@@ -129,7 +129,8 @@ export default {
             tableTitleSecond: null,
             tableListThree:[],
             tableTitleThree: null,
-            url:M.url()
+            url:M.url(),
+            src:"",
         }
     },
     // 实例创建时
@@ -143,6 +144,7 @@ export default {
         clickLookPic() {
             this.picModal = this.picList[0];
             this.picCLeanShowModal = true;
+            this.src=this.imgUrl+this.picModal.fileName
         },
         getJobProgressInfoById() {
             let obj = {
