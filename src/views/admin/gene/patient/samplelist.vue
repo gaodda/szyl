@@ -466,14 +466,17 @@ export default{
             })
         },
         keep(name){  //点击保存
-            this.sampleInfo.userId=getCookie("userid");
-            this.sampleInfo.patientid=this.ptid;
-            this.sampleInfo.productId="1";
-            this.sampleInfo.enrichmentkit=this.enrichmentkitId;
-            this.sampleInfo.platform=this.platformId;
-            this.sampleInfo.takendate = String(this.takendate);
-            this.sampleInfo.receivedate = String(this.receivedate);
-            this.sampleInfo.seqdate = String(this.seqdate);
+            let obj={
+                userId:getCookie("userid"),
+                patientid:this.ptid,
+                productId:"1",
+                enrichmentkit:this.enrichmentkitId,
+                platform:this.platformId,
+                takendate:String(this.takendate),
+                receivedate:String(this.receivedate),
+                seqdate:String(this.seqdate)
+            }
+            M.extend(this.sampleInfo,obj)
             this.$refs[name].validate((valid) => {
                 if(valid){
                     if(M.has(this.sampleInfo,'sampleid')==true){

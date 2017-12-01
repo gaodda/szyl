@@ -11,13 +11,13 @@
 </script>
 <template>
     <div>
-        <div class="cont-head">
+        <!--<div class="cont-head">
             <div class="head">
                 <Row>
                     <Col span="24"><span>当前位置：</span>癌症/我的数据</Col>
                 </Row>
             </div>
-        </div>
+        </div>-->
         <div>
             <Col span="24" class="demo-tabs-style2" v-if="datashow" style="background:#fff;">
                 <Tabs type="card">
@@ -93,11 +93,11 @@
                             </el-table-column>
                             <el-table-column label="报告下载">
                                 <template slot-scope="scope">
-                                    <!--<div v-for="(list,index) in scope.row.dchJob" class="handle" style="height:40px;">-->
-                                        <a class="download" :href="'http://42.123.124.204:8081/dchealth-platform/1.0/data/ftpupdate?jobid='" download >下载</a>
-                                        <!--<a class="dis-download" href="javascript:return false" download  disabled>下载</a>-->
-                                        <!--<a :href="'http://10.131.101.159:8080/dchealth-platform/1.0/data/ftpupdate?jobid='+list.jobid" download  v-if="scope.row.type=='Y'">下载</a>-->
-                                    <!--</div>-->
+                                    <div v-for="(list,index) in scope.row.dchSampleList" class="handle" style="height:40px;">
+                                        <a class="download" :href="'http://42.123.124.204:8081/dchealth-platform/1.0/data/ftpupdate?jobid='+list.jobid" download v-if="list.jobtype=='Y'">下载</a>
+                                        <a class="dis-download" href="javascript:;" download  disabled v-else>下载</a>
+                                        <!--<a :href="'http://10.131.101.159:8080/dchealth-platform/1.0/data/ftpupdate?jobid='+list.jobid" download  v-if="list.jobtype=='Y'">下载</a>-->
+                                    </div>
                                 </template>
                             </el-table-column>
                             <tr slot="append" style="height:50px;" v-if="more">
@@ -379,10 +379,10 @@ import treeGrid from '@/components/treeTable/vue2/TreeGrid'
             value: 'Ion Torrent',
             label: 'Ion Torrent'
           }],
-          seqtarget: [{
+        seqtarget: [{
             value: '点突变+插入缺失',
             label: '点突变+插入缺失'
-          }, {
+            }, {
             value: '基因融合',
             label: '基因融合'
         }],

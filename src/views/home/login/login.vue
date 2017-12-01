@@ -154,6 +154,7 @@ export default{
         clickBtn(){
             delCookie("userid");
             delCookie("email");
+            delCookie("username");
             let flag=true;
                 if(flag){
                     flag=false;
@@ -201,25 +202,25 @@ export default{
             }
             if(this.formLogin.password!=''&&this.formLogin.email!=''){
                 login.login(obj).then((data) => {
+                    console.log(data.data)
                         if(data.data==null || data.data=="null"){
                             this.$Message.error(data.msg)
                             this.load=false;
                         }else{
+                            M.extend(this.$store.state.currentUser,data.data)
                             setCookie('email',data.data.email,null,null,"365");
                             setCookie('userid',data.data.userid,null,null,"365");
                             setCookie('passWord',obj.passWord,null,null,"365");
+                            setCookie('username',data.data.username,null,null,"365")
                             if(this.rememberPassword == true) {
                                 setCookie('rememberPassword',this.rememberPassword,null,null,"365");
                             }else {
                                setCookie('rememberPassword',this.rememberPassword,null,null,"365"); 
                             }
                             this.$router.push('/admin');
-                            console.log(data)
-                            console.log(getCookie('userid'))
                             this.load=false;
                         }
                     }).catch((error)=>{
-                        console.log(error)
                         this.load=false;
                     })
             }else{

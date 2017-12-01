@@ -93,8 +93,8 @@
         <div class="top-bar container">
             <a href="http://47.94.7.125/" class="logo"><img src='./logo.png'/></a>
             <div class="top-own">
-                    <a v-if="currentUserEmail">{{currentUserEmail}}</a>
-                    <router-link to="/login" v-else="currentUserId" @click="loginModal = true" class="active">登录</router-link>
+                    <!--<router-link to="/admin" v-if="currentUserName">{{currentUserName}}</router-link>-->
+                    <router-link to="/login"  @click="loginModal = true" class="active">登录</router-link>
                     <router-link to="/register" v-if="!currentUserEmail">
                         注册
                     </router-link>
@@ -116,8 +116,7 @@ export default {
     name: "header",
     data() {
         return {
-            currentUserEmail: '',
-            currentUser:false,
+            currentUserName: '',
             // 绑定用户名和密码
             formLogin: {},
             ruleValidate: {
@@ -139,15 +138,7 @@ export default {
         
     },
     created() {
-        // this.searchStr = this.$route.query.wd;
-        // this.getCurrentUser()
-        // this.currentUserEmail=getCookie('useremail')
-        // console.log(this.currentUserEmail)
-        // if(this.currentUserEmail==''){
-        //     this.currentUser=false
-        // }else{
-        //     this.currentUser=true
-        // }
+        this.currentUserName=getCookie('username');
     },
 
     computed: {

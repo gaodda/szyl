@@ -35,20 +35,21 @@
         padding:6px 20px;
     }
 }
+
 </style>
 <template>
     <div calss="task">
-        <div class="cont-head">
+        <!--<div class="cont-head">
             <div class="head">
                 <Row>
                     <Col span="24">任务管理/任务列表</Col>
                 </Row>
             </div>
-        </div>
+        </div>-->
 
-        <Tabs type="card" @on-click="choice">
+        <Tabs type="card" @on-click="choice" class="">
             <TabPane label="罕见病"></TabPane>
-            <TabPane label="癌症"></TabPane>
+            <TabPane label="癌症" class="tabcard"></TabPane>
         </Tabs>
 
         <div class="cont-research">
@@ -69,8 +70,8 @@
                 <el-table-column type="index" min-width="5%"></el-table-column>
                 <el-table-column prop="samplecode" label="样本编号" min-width="10%">
                     <template slot-scope="scope">
-                        <router-link :to="{path:'/admin/task-details?type='+'quality&jobid='+scope.row.jobid+'&productId='+productId}" class="bian">{{ scope.row.samplecode}}
-                        </router-link>
+                        <div style="color:#2D8cF0;cursor:pointer;" @click="routeChange(scope.row)">{{ scope.row.samplecode}}
+                        </div>
                     </template>
                 </el-table-column>
                 <el-table-column prop="file" label="文件名称" min-width="15%">
@@ -91,7 +92,7 @@
                 </el-table-column>
                 <el-table-column prop="path" label="vcf文件下载" min-width="10%" v-if="productId==1">
                     <template slot-scope="scope">
-                        <el-button size="small" >下载</el-button>
+                        <el-button size="small" v-if="scope.row.status==99">下载</el-button>
                         <!--<a :href="'http://42.123.124.204:8081/dchealth-platform/1.0/data/ftpupdate?jobid='+scope.row.jobid" download  v-if="scope.row.type=='Y'">下载</a>
                         <a :href="'http://10.131.101.159:8080/dchealth-platform/1.0/data/ftpupdate?jobid='+scope.row.jobid" download  v-if="scope.row.type=='Y'">下载</a>-->
                     </template>
@@ -191,6 +192,7 @@ export default {
         return {
             height:'500',
             more:'',
+            routes:'',
             path:'',
             loading:true,
             tableList: [],            // 表格数组
@@ -202,7 +204,7 @@ export default {
             stopModel: false,         // 终止
             btnType:null,
             pageIndexModel:1,   // 弹层当前页
-            pageSize:10,
+            pageSize:20,
             pageIndex:1,
             jobTotal:null,      // 新建总数
             total:null,
@@ -255,6 +257,14 @@ export default {
         choice(name){
             this.productId=name+1;
             this._getTaskList(); 
+        },
+        //点击样本编号
+        routeChange(row){
+            if(this.productId==1){
+                this.$router.push({path:'/admin/task-details?type=quality&jobid='+row.jobid+'&productId='+this.productId})
+            }else if(this.productId==2){
+                this.$router.push({path:'/admin/task-details-tumour?type=quality&jobid='+row.jobid+'&productId='+this.productId})
+            }
         },
         //加载更多
         loadMore() {  

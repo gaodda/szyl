@@ -29,9 +29,9 @@
     </Dropdown>
     <div style="width:100%;padding:15px 20px;box-sizing:border-box;">
         <el-table :data="samplelist" border style="width: 100%;" height="250" v-loading="listload">
-            <el-table-column label="样本编号" min-width="10%">
+            <el-table-column label="样本编号" min-width="10%" >
                 <template slot-scope="scope">
-                    <span style="color:#3c8dbc" @click="sam">{{ scope.row.samplecode }}</span>
+                    <span style="color:#3c8dbc" @click="sam(scope.row)">{{ scope.row.samplecode }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="samplesource" label="样本类型" min-width="10%"></el-table-column>
@@ -185,10 +185,10 @@
         <div class="sample-title">样本文件信息</div>
         <div class="sample-inner">
             <div style="padding:20px 10px;">
-                <el-table border align="left">
-                    <el-table-column label="文件名称" min-width="30%"></el-table-column>
-                    <el-table-column label="文件大小" min-width="10%"></el-table-column>
-                    <el-table-column label="上传时间" min-width="10%"></el-table-column>
+                <el-table border align="left" :data="sampleDataList">
+                    <el-table-column label="文件名称" prop="filename" min-width="30%"></el-table-column>
+                    <el-table-column label="文件大小" prop="size" min-width="10%"></el-table-column>
+                    <el-table-column label="上传时间" prop="uploaddate"min-width="10%"></el-table-column>
                 </el-table>
             </div>
         </div>
@@ -221,6 +221,7 @@
         sampleModal:false,
         change: true,
         url:M.url(),
+        sampleDataList:[],
         sampleshow:false,
         samplelist: [],
         upModal: false,
@@ -357,6 +358,19 @@
             this.$Message.error(response.msg)
         }
     },
+    // 根据sampleId 获得对应数据
+    getSampleList(row) {
+        let obj = {
+            userId: getCookie("userid"),
+            sampleid:row.sampleid,
+            productId: '2'
+        }
+        console.log(obj);
+        data.getFileList(obj).then((res)=> {
+            console.log(res);
+            this.sampleDataList = res.data;
+        })
+    },
     // 上传失败
     uperror(error, file, fileList) {
         this.$Message.error(error.msg)
@@ -422,16 +436,20 @@
         this.sampleModal=true;
         this.sampleInfo={};
     },
-    sam(){  //点击样本编号
+    sam(row){  //点击样本编号
         this.sampleshow=true; 
+        this.getSampleList(row);
     },
     keep(name){  //点击保存
-        this.sampleInfo.userId=getCookie("userid");
-        this.sampleInfo.patientid=this.ptid;
-        this.sampleInfo.productId="2";
-        this.sampleInfo.takendate = String(this.takendate);
-        this.sampleInfo.receivedate = String(this.receivedate);
-        this.sampleInfo.seqdate = String(this.seqdate);
+        let obj={
+            userId:getCookie("userid"),
+            patientid:this.ptid,
+            productId:"2",
+            takendate:String(this.takendate),
+            receivedate:String(this.receivedate),
+            seqdate:String(this.seqdate)
+        }
+        M.extend(this.sampleInfo,obj)
         this.$refs[name].validate((valid) => {
             if(valid){
                 if(M.has(this.sampleInfo,'sampleid')==true){

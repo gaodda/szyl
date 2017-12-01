@@ -342,10 +342,13 @@
   }
   .download{
     padding:3px 15px;
-    border:1px solid #2d8cf0;
+    border:1px solid #4578ad;
     border-radius: 3px;
-    background:#2d8cf0;
+    background:#4578ad;
     color: #fff;
+    &:hover{
+        color: #fff;
+    }
   }
   .dis-download{
     padding:3px 15px;
@@ -354,4 +357,7 @@
     color: #000;
     border-radius: 3px;
   }
+  .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab:nth-of-type(3){
+    padding:5px 23px 4px;
+}
   

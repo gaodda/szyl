@@ -5,13 +5,13 @@
 </style>
 <template>
 <div>
-    <div class="cont-head">
+    <!--<div class="cont-head">
         <div class="head">
             <Row>
                 <Col span="24"><span>当前位置：</span>罕见病/我的数据</Col>
             </Row>
         </div>
-    </div>
+    </div>-->
     <div>
         <Col span="24" class="demo-tabs-style2" v-if="datashow">
             <Tabs type="card">

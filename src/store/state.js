@@ -1,7 +1,7 @@
 // 根目录下的状态
 const state = {
     // 当前登登录的用户的基本信息
-    currentUser: null,
+    currentUser: {},
     // 当前用户拥有的模块信息
     userModuleList: null,
     // 当前用户登陆的模块信息

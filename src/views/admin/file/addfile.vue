@@ -25,7 +25,7 @@
     <template>
     <div class="file-upload">
         <div class="filesup">批量上传</div>
-        <div style="padding:20px;"><span style="cursor:pointer;"><&nbsp;&nbsp;批量添加</span>
+        <div style="padding:20px;"><span style="cursor:pointer;" @click="back"><&nbsp;&nbsp;批量添加</span>
         <div style="float:right;">
             <Button type="primary" @click="upstart">开始上传</Button>
         </div>
@@ -33,8 +33,8 @@
     
     <div class="allfile fileshow">
     <el-table ref="multipleTable" :data="sampleDataWithExcel" border tooltip-effect="dark" style="width: 100%" 
-    align="left"  @select-all="handleSelectionAll" @select="handleSelection">
-        <el-table-column type="selection" width="55"> </el-table-column>
+    align="left"  @select-all="handleSelectionAll" @select="handleSelection" >
+        <el-table-column type="selection" width="55" :selectable="selectable"> </el-table-column>
         <el-table-column label="文件名称">
         <template slot-scope="scope">
         {{scope.row.filename}}
@@ -89,6 +89,13 @@
             }
         },
         methods:{
+            selectable(row,index){
+                if(row.execelDataEnum =='keExecelDataType_FILE_EXIST'){
+                    return 0
+                }else{
+                    return 1
+                }
+            },
             confirm(){  //确定
                 this.saplist.filename=this.newname;
                 this.reName=false;
@@ -108,6 +115,9 @@
             },
             handleSelectionAll(val){ //全选
                 this.excelList=val;
+            },
+            back(){  //后退
+                this.$router.push('/admin/fileup?productId='+this.url.productId);
             },
             upstart(){  //开始上传
                 this.loading=false;

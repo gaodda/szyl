@@ -64,7 +64,8 @@ export default {
             task.getJobRowse(obj).then((res)=> {
                 console.log(res);
                 if(res.data=="成功") {
-                    this.urlSrc = "http://10.131.101.159:8080/jbrowse/JBrowse-1.11.5/index.html?data=file"
+                    this.urlSrc = "http://42.123.124.204:8081/jbrowse/JBrowse-1.11.5/index.html?data=file"
+                    // this.urlSrc = "http://10.131.101.159:8080/jbrowse/JBrowse-1.11.5/index.html?data=file"
                     this.loading = false;
                 }else {
                     this.dataShow = true;

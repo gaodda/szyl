@@ -64,15 +64,15 @@
                         </Select>
                     </FormItem>
                     <FormItem label="临床诊断" style="width:30%;">
-                        <Input v-model="basicInfo.clinicalinf"></Input>
+                        <Input v-model="basicInfo.clinicalinf" type="textarea"></Input>
                     </FormItem>
                 </Col>
                 <Col class="tables">
                     <FormItem label="现病史" style="width:30%;">
-                        <Input v-model="basicInfo.history"></Input>
+                        <Input v-model="basicInfo.history" type="textarea"></Input>
                     </FormItem>
                     <FormItem label="既往史" style="width:30%;">
-                        <Input v-model="basicInfo.pasthistory"></Input>
+                        <Input v-model="basicInfo.pasthistory" type="textarea"></Input>
                     </FormItem>
                 </Col>
             </Form>
@@ -359,7 +359,7 @@ export default{
     mounted(){
         this.getdisease();
         let baseURI=this.$refs.basicInfo.$el.baseURI;
-        if(baseURI!="http://localhost:9090/#/admin/tumour/info"){
+        if(baseURI!="http://localhost:9090/admin/tumour/info"){
             this.getpatientinfo();
             this.placement="bottom"
         }

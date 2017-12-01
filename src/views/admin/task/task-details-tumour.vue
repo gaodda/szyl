@@ -7,20 +7,6 @@
         padding-bottom: 25px;
         padding-top: 25px;
     }
-    .card-cont span{
-        display: inline-block;
-        position: relative;
-        padding-right: 20px;
-        color:#fff;
-        font-size: 16px;
-        width:70%;
-        height:50px;
-        overflow:hidden;
-    }
-    .card-cont img {
-        margin-top:-60px;
-        float:right;
-    }
     .task-title .title {
         padding:10px;
         font-size: 18px;
@@ -34,11 +20,37 @@
             padding: 5px 10px;
         }
     }
+    .ivu-card-body{
+        padding:0;
+        .card-cont{
+            width:100%;
+            height:119px;
+            .card-img{
+                width:120px;
+                height:100%;
+                float:left;
+                // background:#717BB6;
+                img{
+                    width:100%;
+                    height:100%;
+                    padding:25px;
+                    box-sizing:border-box;
+                    display:block;
+                }
+            }
+            .card-name{
+                font-size:18px;
+                text-align:center;
+                line-height:119px;
+                letter-spacing:5px;
+            }
+        }
+    }
 }
 .card1,.card2,.card3,.card4,.card5{
     position:relative;
-    width:200px;
-    height:110px;
+    width:100%;
+    height:120px;
     &:hover {
         cursor:pointer;
         .card-bg {
@@ -55,7 +67,7 @@
 }
 .card-bg{
     width:100%;
-    height:110px;
+    height:120px;
 }
 .details-nav .card-bg {
     position:absolute;
@@ -65,19 +77,25 @@
     background:rgba(0,0,0,0.3);
 }
 .card1 .ivu-card-bordered {
-    background:#717BB6;
-}
-.card2 .ivu-card-bordered {
-    background:#3883CB;
+    border:1px solid #717BB6;
+    color:#717BB6;
+    .card-img{
+        background:#717BB6;
+    }
 }
 .card3 .ivu-card-bordered {
-    background:#149F9E;
-}
-.card4 .ivu-card-bordered {
-    background:#DFAF2D;
+    border:1px solid #149F9E;
+    color:#149F9E;
+    .card-img{
+        background:#149F9E;
+    }
 }
 .card5 .ivu-card-bordered {
-    background:#D0514E;
+    border:1px solid #D0514E;
+    color:#D0514E;
+    .card-img{
+        background:#D0514E;
+    }
 }
 .task-content {
     position:relative;
@@ -106,95 +124,52 @@
         </div>
         <div class="details-nav">
             <Row type="flex" justify="space-around">
-                <Col :lg="{span:4}">
+                <Col :lg="{span:6}">
                     <div class="card1 card-click" @click="currentView='quality'" :class="{'active':'quality'==currentView}" >
                         <div class="card-bg" >
                         </div><!-- 设置高亮 -->
-                        <div class="card-cont">
-                            <Card style="height:110px;">
-                                <div class="card-cont">
-                                    <div class="card-name">
-                                        <span>质控与统计</span>
-                                    </div>
-                                    <div calss="card-img">
-                                        <img src="./img/1.png" height="50" width="50" alt="">
-                                    </div>
+                        <Card style="height:120px;">
+                            <div class="card-cont">
+                                <div class="card-img">
+                                    <img src="./img/1.png" alt="">
                                 </div>
-                            </Card>
-                        </div>
-                    </div>
-                      
-                </Col>
-                <Col :lg="{span:4}" >
-                    <div class="card2 card-click" @click="currentView='clean'" :class="{'active':'clean'==currentView}" >
-                        <div class="card-bg">
-                        </div><!-- 设置高亮 -->
-                        <div class="card-cont">
-                            <Card style="height:110px;">
-                                <div class="card-cont">
-                                    <div class="card-name">
-                                        <span>clean reads和参考基因组比对与外显子捕获统计</span>
-                                    </div>
-                                    <div calss="card-img">
-                                        <img src="./img/2.png" height="50" width="50" alt="">
-                                    </div>
+                                <div class="card-name">
+                                    <span>质控与统计</span>
                                 </div>
-                            </Card>
-                        </div>
-                    </div>
+                            </div>
+                        </Card>
+                    </div>      
                 </Col>
-                <Col :lg="{span:4}" >
+                <Col :lg="{span:6}" >
                     <div class="card3 card-click" @click="currentView='visual'" :class="{'active':'visual'==currentView}" >
                         <div class="card-bg">
                         </div><!-- 设置高亮 -->
-                        <div class="card-cont">
-                            <Card style="height:110px;">
-                                <div class="card-cont">
-                                    <div class="card-name">
-                                        <span>变异位点可视化</span>
-                                    </div>
-                                    <div calss="card-img">
-                                        <img src="./img/3.png" height="50" width="50" alt="">
-                                    </div>
+                        <Card style="height:120px;">
+                            <div class="card-cont">
+                                <div class="card-img">
+                                    <img src="./img/3.png" height="50" width="50" alt="">
                                 </div>
-                            </Card>
-                        </div>
+                                <div class="card-name">
+                                    <span>变异位点可视化</span>
+                                </div>
+                            </div>
+                        </Card>
                     </div>
                 </Col>
-                <Col :lg="{span:4}">
-                    <div class="card4 card-click"  @click="currentView='note'" :class="{'active':'note'==currentView}">
-                        <div class="card-bg" >
-                        </div><!-- 设置高亮 -->
-                        <div class="card-cont">
-                            <Card style="height:110px;">
-                                <div class="card-cont">
-                                    <div class="card-name">
-                                        <span>突变检测及注释</span>
-                                    </div>
-                                    <div calss="card-img">
-                                        <img src="./img/4.png" height="50" width="50" alt="">
-                                    </div>
-                                </div>
-                            </Card>
-                        </div>
-                    </div>
-                </Col>
-                <Col :lg="{span:4}"  >
+                <Col :lg="{span:6}"  >
                     <div class="card5 card-click"  @click="currentView='nintdata'" :class="{'active':'nintdata'==currentView}" >
                         <div class="card-bg" >
                         </div><!-- 设置高亮 -->
-                        <div class="card-cont">
-                            <Card style="height:110px;">
-                                <div class="card-cont">
-                                    <div class="card-name">
-                                        <span>原始数据说明</span>
-                                    </div>
-                                    <div calss="card-img">
-                                        <img src="./img/5.png" height="50" width="50" alt="">
-                                    </div>
+                        <Card style="height:120px;">
+                            <div class="card-cont">
+                                <div class="card-img">
+                                    <img src="./img/5.png" height="50" width="50" alt="">
                                 </div>
-                            </Card>
-                        </div>
+                                <div class="card-name">
+                                    <span>原始数据说明</span>
+                                </div>
+                            </div>
+                        </Card>
                     </div>
                 </Col>
             </Row>
@@ -248,7 +223,7 @@ export default {
         // 如果路由有变化，会再次执行该方法
         currentView(newVal, oldVal) {
             this.$router.push({
-                path: "/admin/task-details",
+                path: "/admin/task-details-tumour",
                 query: {
                     type: newVal,
                     path:this.url.path ? this.url.path : '',

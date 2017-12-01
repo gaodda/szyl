@@ -58,8 +58,7 @@ import {getCookie} from '@/common/js/cookie.js'
             }
         },
         mounted(){
-            this.email=getCookie("email")
-            this.formItem.email=this.email;
+            M.extend(this.formItem,this.$store.state.currentUser);
         }
     }
 </script>

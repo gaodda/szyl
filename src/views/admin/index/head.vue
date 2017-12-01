@@ -47,13 +47,13 @@
 <template>
 <div class="admin-head clear">
     <div class="admin-logo-head">
-        <router-link to="/home"><img src="./logo2.png"></router-link>
+        <router-link :to="routes"><img src="./logo2.png"></router-link>
     </div>
     <div class="admin-head-right">
         <div class="user-wrap">
             <Avatar icon="person" style="margin-right:10px;"/>
             <Dropdown>
-                <a href="javascript:void(0)" class="user-name" @click="userInfo">{{cemail}}</a>
+                <a href="javascript:void(0)" class="user-name" @click="userInfo">{{cusername}}</a>
             </Dropdown>
             <div class="admin-exit" @click="exit">
                 <Icon type="log-out"></Icon>
@@ -66,10 +66,10 @@
 import {getCookie,delCookie} from '@/common/js/cookie.js'
 export default {
     name: 'admin-head',
-    props:["cemail"],
+    props:["cusername"],
     data() {
         return {
-            email:""
+            routes:""
         }
     },
     methods: {
@@ -78,7 +78,12 @@ export default {
             delCookie("email");
             delCookie("password");
             delCookie("rememberPassword");
-            this.$router.push("/")
+            delCookie("username");
+            M.each(this.$store.state.currentUser,(value,key)=>{
+                delete this.$store.state.currentUser[key]
+            })
+            console.log(this.$store.state.currentUser)
+            this.$router.push("/");
         },
         userInfo(){
             this.$router.push("/admin/userinfo")
@@ -88,7 +93,13 @@ export default {
       
     },
     mounted(){
-        // this.email=getCookie('email');
+        let search=window.location.search.slice(1,6);
+        if(search=="code="){
+            let code=window.location.search.substr(6).split("&")[0];
+            this.routes='/?code='+code;
+        }else{
+            this.routes='/'
+        }
     }
 };
 </script>

@@ -50,9 +50,9 @@ export default {
             }
         },
         created() {
-            let search=window.location.search.slice(1,5);
+            let search=window.location.search.slice(1,6);
             console.log(search)
-            if(search=="code"){
+            if(search=="code="){
                 let code=window.location.search.substr(6).split("&")[0];
                 console.log(code) 
                 this.$router.push({path:"/admin?code="+code})

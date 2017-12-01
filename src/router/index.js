@@ -94,6 +94,10 @@ const router=new VueRouter({
                 path: '/admin/task-details',
                 component: resolve => require(['@/views/admin/task/task-details.vue'], resolve) 
             },{
+                name:"detailstumour",
+                path: '/admin/task-details-tumour',
+                component: resolve => require(['@/views/admin/task/task-details-tumour.vue'], resolve) 
+            },{
                 name:"userinfo",
                 path: '/admin/userinfo',
                 component: resolve => require(['@/views/admin/index/userinfo.vue'], resolve) 

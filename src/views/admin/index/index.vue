@@ -109,7 +109,7 @@ $right-main-bg: #ECF0F5;
 <!-- 后台主容器 -->
 <div class="admin-layout" v-loading="load">
     <!-- 头部 -->
-    <adminHead :cemail="cemail"></adminHead>
+    <adminHead :cusername="cusername"></adminHead>
     <!-- 主体 -->
     <Row class="admin-main" type="flex">
           <i-col class="admin-layout-left" :span="spanLeft">
@@ -154,7 +154,7 @@ import {setCookie,getCookie} from '@/common/js/cookie.js'
 export default {
     data() {
         return {
-            cemail:"",
+            cusername:"",
             load:Boolean,
             url:M.url(),
             // 左侧导航列数
@@ -190,8 +190,8 @@ export default {
     created() {
         // let code=this.url.code;
         this.load=true;
-        let search=window.location.search.slice(1,5);
-        if(search=="code"){
+        let search=window.location.search.slice(1,6);
+        if(search=="code="){
             let code=window.location.search.substr(6).split("&")[0];
             console.log(code) 
             login.tgexLogin(code).then((data)=>{
@@ -200,14 +200,16 @@ export default {
                 if(data.data==null || data.data=="null"){
                     this.$Message.error(data.msg)
                 }else{
+                    M.extend(this.$store.state.currentUser,data.data)
                     setCookie('email',data.data.email,null,null,"365");
                     setCookie('userid',data.data.userid,null,null,"365");
-                    this.cemail=data.data.email;
+                    setCookie('username',data.data.userid,null,null,"365")
+                    this.cusername=getCookie('username');
                 }
             })
         }else{
             this.load=false;
-            this.cemail=getCookie("email")
+            this.cusername=getCookie('username');
         }
     },
     // 实例创建完成
